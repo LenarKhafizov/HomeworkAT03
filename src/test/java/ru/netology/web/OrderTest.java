@@ -41,13 +41,26 @@ class OrderTest {
 
     @Test
     void shouldTestV1() {
-        List<WebElement> elements = driver.findElements(By.className("input__inner"));
+        List<WebElement> elements = driver.findElements(By.className("input__control"));
         elements.get(0).sendKeys("Иванов Василий");
         elements.get(1).sendKeys("+79270000000");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button")).click();
         String text = driver.findElement(By.className("Success_successBlock__2L3Cw")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время", text.trim());
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+    }
+
+    @Test
+    void shouldTestV2() {
+        WebElement form = driver.findElement(By.cssSelector("form")); // ???
+        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Василий");
+        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
+        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+
+        form.findElement(By.cssSelector("[button.button_theme_alfa-on-white")).click(); // ???
+
+        String text = driver.findElement(By.className("order-success")).getText();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
 
  }
