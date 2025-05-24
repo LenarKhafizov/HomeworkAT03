@@ -40,7 +40,7 @@ class OrderTest {
     }
 
     @Test
-    void shouldTestV1() {
+    void shouldSendValidFormWithClassName() {
         List<WebElement> elements = driver.findElements(By.className("input__control"));
         elements.get(0).sendKeys("Иванов Василий");
         elements.get(1).sendKeys("+79270000000");
@@ -51,7 +51,7 @@ class OrderTest {
     }
 
     @Test
-    void shouldTestV2() {
+    void shouldSendValidFormWithCssSelectors() {
         WebElement form = driver.findElement(By.cssSelector("form"));
         form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Василий");
         form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
