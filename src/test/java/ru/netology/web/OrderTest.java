@@ -52,15 +52,13 @@ class OrderTest {
 
     @Test
     void shouldTestV2() {
-        WebElement form = driver.findElement(By.cssSelector("form")); // ???
+        WebElement form = driver.findElement(By.cssSelector("form"));
         form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Василий");
         form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-
-        form.findElement(By.cssSelector("[button.button_theme_alfa-on-white")).click(); // ???
-
-        String text = driver.findElement(By.className("order-success")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button_theme_alfa-on-white")).click();
+        WebElement resultElement = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", resultElement.getText().trim());
     }
 
  }
